@@ -1,0 +1,120 @@
+PS C:\Users\itdal\Desktop\blake-internship> git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   package-lock.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+PS C:\Users\itdal\Desktop\blake-internship> git checkout -b blake-onboarding     
+Switched to a new branch 'blake-onboarding'
+
+PS C:\Users\itdal\Desktop\blake-internship> git status
+On branch blake-onboarding
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   package-lock.json
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+PS C:\Users\itdal\Desktop\blake-internship> git add .
+PS C:\Users\itdal\Desktop\blake-internship> git status
+On branch blake-onboarding
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   package-lock.json
+
+PS C:\Users\itdal\Desktop\blake-internship> git commit -m "onboarding practice"
+[blake-onboarding 341acd5] onboarding practice
+ 1 file changed, 62 insertions(+), 196 deletions(-)
+
+PS C:\Users\itdal\Desktop\blake-internship> git push
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 1.41 KiB | 55.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote: 
+remote: Create a pull request for 'blake-onboarding' on GitHub by visiting:      
+remote:      https://github.com/ITDallasDBW/blake-internship/pull/new/blake-onboarding
+remote:
+To https://github.com/ITDallasDBW/blake-internship.git
+ * [new branch]      blake-onboarding -> blake-onboarding
+branch 'blake-onboarding' set up to track 'origin/blake-onboarding'.
+
+PS C:\Users\itdal\Desktop\blake-internship> git status
+On branch blake-onboarding
+Your branch is up to date with 'origin/blake-onboarding'.
+
+nothing to commit, working tree clean
+
+PS C:\Users\itdal\Desktop\blake-internship> git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+
+PS C:\Users\itdal\Desktop\blake-internship> git pull
+remote: Enumerating objects: 1, done.
+remote: Counting objects: 100% (1/1), done.
+remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (1/1), 868 bytes | 217.00 KiB/s, done.
+From https://github.com/ITDallasDBW/blake-internship
+   b7d08ef..fc6bae6  main       -> origin/main
+Updating b7d08ef..fc6bae6
+Fast-forward
+ package-lock.json | 258 +++++++++++++-----------------------------------------
+ 1 file changed, 62 insertions(+), 196 deletions(-)
+
+PS C:\Users\itdal\Desktop\blake-internship> git checkout -b blake-hotcollections
+Switched to a new branch 'blake-hotcollections'
+
+PS C:\Users\itdal\Desktop\blake-internship> git status
+On branch blake-hotcollections
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   src/pages/Explore.jsx
+
+no changes added to commit (use "git add" and/or "git commit -a")
+PS C:\Users\itdal\Desktop\blake-internship> git add .
+PS C:\Users\itdal\Desktop\blake-internship> git status
+On branch blake-hotcollections
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   src/pages/Explore.jsx
+
+PS C:\Users\itdal\Desktop\blake-internship> git commit -m "test commit"
+[blake-hotcollections 15cf845] test commit
+ 1 file changed, 1 insertion(+)
+
+PS C:\Users\itdal\Desktop\blake-internship> git push
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 445 bytes | 445.00 KiB/s, done.
+Total 5 (delta 4), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+remote:
+remote: Create a pull request for 'blake-hotcollections' on GitHub by visiting:  
+remote:      https://github.com/ITDallasDBW/blake-internship/pull/new/blake-hotcollections
+remote:
+To https://github.com/ITDallasDBW/blake-internship.git
+ * [new branch]      blake-hotcollections -> blake-hotcollections
+branch 'blake-hotcollections' set up to track 'origin/blake-hotcollections'.   
+
+PS C:\Users\itdal\Desktop\blake-internship> git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+
+PS C:\Users\itdal\Desktop\blake-internship> git checkout blake-hotcollections    
+Switched to branch 'blake-hotcollections'
+Your branch is up to date with 'origin/blake-hotcollections'.
+
+PS C:\Users\itdal\Desktop\blake-internship>
+
