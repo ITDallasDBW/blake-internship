@@ -5,6 +5,7 @@ import Landing from "../components/home/Landing";
 import LandingIntro from "../components/home/LandingIntro";
 import NewItems from "../components/home/NewItems";
 import TopSellers from "../components/home/TopSellers";
+import Working from "../components/home/Working";
 
 const Home = () => {
   useEffect(() => {
@@ -12,9 +13,11 @@ const Home = () => {
   }, []);
 
   return (
+    <>
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
+        <Working />
         <Landing />
         <LandingIntro />
         <HotCollections />
@@ -23,6 +26,7 @@ const Home = () => {
         <BrowseByCategory />
       </div>
     </div>
+    </>
   );
 };
 
