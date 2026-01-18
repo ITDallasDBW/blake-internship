@@ -21,6 +21,7 @@ const Working = () => {
     },
   });
 
+  
   //Axios API call
   async function getHotCo() {
     const response = await axios.get(BASE_URL);
