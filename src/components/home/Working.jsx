@@ -21,7 +21,6 @@ const Working = () => {
     },
   });
 
-  
   //Axios API call
   async function getHotCo() {
     const response = await axios.get(BASE_URL);
@@ -32,6 +31,13 @@ const Working = () => {
   useEffect(() => {
     getHotCo();
   }, []);
+
+  
+  useEffect(() => {
+    if (hotCo.length > 0 && instanceRef.current) {
+        instanceRef.current.update();
+    }
+  }, [hotCo]);
 
   return (
     <>
