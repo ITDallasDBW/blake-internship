@@ -1,3 +1,82 @@
+button {
+  text-transform: none;
+  overflow: visible;
+}
+.keen__nav {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 30px !important;
+  background: 0 0;
+  padding: 0 !important;
+  margin: 5px;
+}
+.keen__nav:hover {
+  background: #869791;
+  /* color: #fff; */
+  text-decoration: none;
+}
+.keen__arrow {
+  position: absolute;
+  background-color: #fff !important;
+  border: 1px solid #ccc !important;
+  border-radius: 60px !important;
+  height: 45px;
+  top: 37.5%;
+  width: 45px;
+  z-index: 100;
+  outline: none;
+  transition: .2s ease;
+}
+
+.arrow__prev {
+  left: -12px;
+}
+.arrow__next {
+  right: -12px;
+}
+
+/* .arrow {
+  z-index: 5;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  fill: #fff;
+  cursor: pointer;
+}
+
+.arrow--left {
+  left: -12px;
+}
+
+.arrow--right {
+  left: auto;
+  right: 5px;
+}
+
+.owl-theme .owl-nav {
+  margin-top: 10px;
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.owl-theme .owl-nav [class*="owl-"] {
+  color: #fff;
+  font-size: 14px;
+  margin: 5px;
+  padding: 4px 7px;
+  background: #d6d6d6;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.owl-theme .owl-nav [class*="owl-"]:hover {
+  background: #869791;
+  color: #fff;
+  text-decoration: none;
+}
+
 [class^="number-slide"],
 [class*=" number-slide"] {
   background: grey;
@@ -9,9 +88,9 @@
   font-weight: 500;
   height: 300px;
   max-height: 100vh;
-}
+} */
 
-.number-slide1 {
+/* .number-slide1 {
   background: rgb(64, 175, 255);
   background: linear-gradient(
     128deg,
@@ -67,7 +146,7 @@
     rgba(64, 76, 255, 1) 0%,
     rgba(174, 63, 255, 1) 100%
   );
-}
+} */
 
 .navigation-wrapper {
   position: relative;
@@ -97,25 +176,3 @@
 .dot.active {
   background: #000;
 } */
-
-.arrow {
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  fill: #fff;
-  cursor: pointer;
-}
-
-.arrow--left {
-  left: 5px;
-}
-
-.arrow--right {
-  left: auto;
-  right: 5px;
-}
-
-

@@ -12,12 +12,17 @@ const Working = () => {
   const [hotCo, setHotCo] = useState([]);
 
   //KEEN SLIDER
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider({
     loop: true,
     mode: "free-snap",
     slides: {
       perView: 4,
       spacing: 15,
+      slideChanged(slider) {
+        setCurrentSlide(slider.track.details.rel);
+      },
     },
   });
 
@@ -32,10 +37,9 @@ const Working = () => {
     getHotCo();
   }, []);
 
-  
   useEffect(() => {
     if (hotCo.length > 0 && instanceRef.current) {
-        instanceRef.current.update();
+      instanceRef.current.update();
     }
   }, [hotCo]);
 
@@ -53,7 +57,7 @@ const Working = () => {
             <div className="navigation-wrapper">
               <div ref={sliderRef} className="keen-slider">
                 {hotCo.map((hotColl, id) => (
-                  <div className="keen-slider__slide">
+                  <div className="keen-slider__slide" key={id}>
                     <div className="nft_coll">
                       <div className="nft_wrap">
                         <Link to="/item-details">
@@ -84,6 +88,22 @@ const Working = () => {
                   </div>
                 ))}
               </div>
+              {instanceRef.current && (
+                <>
+                  <button
+                    onClick={() => instanceRef.current?.prev()}
+                    className="keen__nav keen__arrow arrow__prev"
+                  >
+                    {"<"}
+                  </button>
+                  <button
+                    onClick={() => instanceRef.current?.next()}
+                    className="keen__nav keen__arrow arrow__next"
+                  >
+                    {">"}
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>
