@@ -19,7 +19,7 @@ const Working = () => {
     mode: "free-snap",
     slides: {
       perView: 4,
-      spacing: 15,
+      spacing: 24,
       slideChanged(slider) {
         setCurrentSlide(slider.track.details.rel);
       },
