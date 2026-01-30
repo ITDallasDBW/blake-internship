@@ -3,13 +3,17 @@ import { Link } from "react-router-dom";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const BASE_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
 
 const Working = () => {
+
   //USE STATE
   const [hotCo, setHotCo] = useState([]);
+
+  const navigate=useNavigate();
 
   //KEEN SLIDER
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -19,9 +23,29 @@ const Working = () => {
     mode: "free-snap",
     slides: {
       perView: 4,
-      spacing: 24,
+      spacing: 10,
       slideChanged(slider) {
         setCurrentSlide(slider.track.details.rel);
+      },
+    },
+        breakpoints: {
+      "(max-width: 1024px)": {
+        slides: {
+          perView: 3,
+          spacing: 10,
+        },
+      },
+      "(max-width: 768px)": {
+        slides: {
+          perView: 2,
+          spacing: 10,
+        },
+      },
+      "(max-width: 480px)": {
+        slides: {
+          perView: 1,
+          spacing: 10,
+        },
       },
     },
   });
@@ -30,7 +54,12 @@ const Working = () => {
   async function getHotCo() {
     const response = await axios.get(BASE_URL);
     setHotCo(response.data);
+    console.log(response.data)
   }
+  // //onClick to nftId
+  // const goToItemDetails =()=> {
+  //   navigate(`/item-details/${hotCo.nftId}`)
+  // }
 
   //USE EFFECT
   useEffect(() => {
@@ -54,13 +83,16 @@ const Working = () => {
                 <div className="small-border bg-color-2"></div>
               </div>
             </div>
+            
             <div className="navigation-wrapper">
               <div ref={sliderRef} className="keen-slider">
                 {hotCo.map((hotColl, id) => (
                   <div className="keen-slider__slide" key={id}>
                     <div className="nft_coll">
-                      <div className="nft_wrap">
-                        <Link to="/item-details">
+                      <div className="nft_wrap skeleton">
+
+                        <Link to={`/item-details/${hotColl.nftId}`}
+                        state={{item:hotColl}}>
                           <img
                             src={hotColl.nftImage}
                             className="lazy img-fluid"
@@ -92,13 +124,13 @@ const Working = () => {
                 <>
                   <button
                     onClick={() => instanceRef.current?.prev()}
-                    className="keen__nav keen__arrow arrow__prev"
+                    className="arrow arrow--left"
                   >
                     {"<"}
                   </button>
                   <button
+                  className="arrow arrow--right"
                     onClick={() => instanceRef.current?.next()}
-                    className="keen__nav keen__arrow arrow__next"
                   >
                     {">"}
                   </button>
