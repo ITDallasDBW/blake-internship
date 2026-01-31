@@ -1,6 +1,7 @@
 .skeleton {
   /* opacity: .7; */
-  animation: skeleton-loading 1s linear infinite alternate;
+  /* animation: skeleton-loading 1s linear infinite alternate; */
+  background-color: red;
 }
 @keyframes skeleton-loading {
   0% {

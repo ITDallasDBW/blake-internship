@@ -64,11 +64,16 @@ const Working = () => {
     getHotCo();
   }, []);
 
+  // useEffect(() => {
+  //   if (hotCo.length > 0 && instanceRef.current) {
+  //     instanceRef.current.update();
+  //   }
+  // }, [hotCo]);
   useEffect(() => {
-    if (hotCo.length > 0 && instanceRef.current) {
+    if (instanceRef.current) {
       instanceRef.current.update();
     }
-  }, [hotCo]);
+  }, [hotCo, instanceRef]);
 
   return (
     <>
@@ -89,26 +94,30 @@ const Working = () => {
 
             <div className="navigation-wrapper">
               <div ref={sliderRef} className="keen-slider">
-                {hotCo.map((hotColl, id) => (
-                  <div className="keen-slider__slide" key={id}>
-                    <div className="nft_coll skeleton">
-                      {/* {loading ? (
-                        <>
-                          <p>Yes</p>
-                          <div className="skeleton nft_wrap-skeleton"></div>
-                          <div className="nft_coll_pp ">
-                            <p className="skeleton"></p>
+                {loading ? (
+                  //Render 4 sketon slides while loading
+                  [...Array(4)].map((_, id) => (
+                    <div className="keen-slider__slide" key={id}>
+                      <div className="nft_coll skeleton">
+                        <div className="nft_wrap skeleton nft_wrap-skeleton">
+                          <div className="nft_coll_pp">
+                            <div className="skeleton pp-coll"></div>
                           </div>
-                          <div className="nft_col_info">
+                          <div className="nft_coll_info">
                             <div className="skelDesc__Up"></div>
                             <div className="skelDesc__Down"></div>
                           </div>
-                        </>
-                      ) : (
-                        <>
-                          <p>No</p> */}
-
-                      <div className="nft_wrap skeleton">
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  //Render actual data when loaded
+                  
+                {hotCo.map((hotColl, id) => (
+                  <div className="keen-slider__slide" key={id}>
+                    <div className="nft_coll">
+                      <div className="nft_wrap">
                         <Link to="/item-details">
                           <div className="lazy img-fluid"></div>
                           <img
@@ -139,6 +148,8 @@ const Working = () => {
                     </div>
                   </div>
                 ))}
+                )}
+
               </div>
               {instanceRef.current && (
                 <>
