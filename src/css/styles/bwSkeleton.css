@@ -1,0 +1,55 @@
+.skeleton {
+  /* opacity: .7; */
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 200%, 70%);
+  }
+  100% {
+    background-color: hsl(200, 200%, 95%);
+  }
+}
+
+.skelLoad {
+  color: red;
+}
+
+/* .skeleton {
+  background-color: rgb(227, 227, 227);
+}
+.nft_wrap-skeleton {
+  position: relative;
+  width: 100%;
+  height: 126px;
+  border-radius: 10px;
+  max-width: 315px;
+  max-height: 126px;
+}
+
+.nft_coll_pp p {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border: solid 5px rgb(227, 227, 227);
+    margin-top: -30px;
+  margin-bottom: 10px;
+}
+
+.nft_col_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.skelDesc__Up {
+  height: 19px;
+  width: 100px;
+}
+.skelDesc__Down {
+  margin-top: 8px;
+  height: 19px;
+  width: 50px;
+} */

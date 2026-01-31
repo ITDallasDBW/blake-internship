@@ -9,15 +9,14 @@ const BASE_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
 
 const Working = () => {
-
   //USE STATE
   const [hotCo, setHotCo] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   //KEEN SLIDER
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [loaded, setLoaded] = useState(false);
   const [sliderRef, instanceRef] = useKeenSlider({
     loop: true,
     mode: "free-snap",
@@ -28,7 +27,7 @@ const Working = () => {
         setCurrentSlide(slider.track.details.rel);
       },
     },
-        breakpoints: {
+    breakpoints: {
       "(max-width: 1024px)": {
         slides: {
           perView: 3,
@@ -54,15 +53,14 @@ const Working = () => {
   async function getHotCo() {
     const response = await axios.get(BASE_URL);
     setHotCo(response.data);
-    console.log(response.data)
+    setLoading(false);
+    console.log(response.data);
   }
-  // //onClick to nftId
-  // const goToItemDetails =()=> {
-  //   navigate(`/item-details/${hotCo.nftId}`)
-  // }
+  console.log(loading);
 
   //USE EFFECT
   useEffect(() => {
+    setLoading(true);
     getHotCo();
   }, []);
 
@@ -80,19 +78,39 @@ const Working = () => {
             <div className="col-lg-12">
               <div className="text-center">
                 <h2>(Dynamic) Hot Collections</h2>
+                {loading ? (
+                  <h3 className="skelLoad">LOADING</h3>
+                ) : (
+                  <h3>loaded</h3>
+                )}
                 <div className="small-border bg-color-2"></div>
               </div>
             </div>
-            
+
             <div className="navigation-wrapper">
               <div ref={sliderRef} className="keen-slider">
                 {hotCo.map((hotColl, id) => (
                   <div className="keen-slider__slide" key={id}>
-                    <div className="nft_coll">
-                      <div className="nft_wrap skeleton">
+                    <div className="nft_coll skeleton">
+                      {/* {loading ? (
+                        <>
+                          <p>Yes</p>
+                          <div className="skeleton nft_wrap-skeleton"></div>
+                          <div className="nft_coll_pp ">
+                            <p className="skeleton"></p>
+                          </div>
+                          <div className="nft_col_info">
+                            <div className="skelDesc__Up"></div>
+                            <div className="skelDesc__Down"></div>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <p>No</p> */}
 
-                        <Link to={`/item-details/${hotColl.nftId}`}
-                        state={{item:hotColl}}>
+                      <div className="nft_wrap skeleton">
+                        <Link to="/item-details">
+                          <div className="lazy img-fluid"></div>
                           <img
                             src={hotColl.nftImage}
                             className="lazy img-fluid"
@@ -116,6 +134,8 @@ const Working = () => {
                         </Link>
                         <span>ERC-{hotColl.code}</span>
                       </div>
+                      {/* </>
+                      )} */}
                     </div>
                   </div>
                 ))}
@@ -129,7 +149,7 @@ const Working = () => {
                     {"<"}
                   </button>
                   <button
-                  className="arrow arrow--right"
+                    className="arrow arrow--right"
                     onClick={() => instanceRef.current?.next()}
                   >
                     {">"}

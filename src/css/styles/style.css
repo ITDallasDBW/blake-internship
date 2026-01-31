@@ -13213,10 +13213,6 @@ a.read_more i {
   -webkit-border-radius: 10px 10px 0 0;
 }
 
-.skeleton {
-  background-color: gray;
-}
-
 .nft_coll:hover img {
   transform: scale(1.05);
 }
