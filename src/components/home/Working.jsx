@@ -94,62 +94,57 @@ const Working = () => {
 
             <div className="navigation-wrapper">
               <div ref={sliderRef} className="keen-slider">
-                {loading ? (
-                  //Render 4 sketon slides while loading
-                  [...Array(4)].map((_, id) => (
-                    <div className="keen-slider__slide" key={id}>
-                      <div className="nft_coll skeleton">
-                        <div className="nft_wrap skeleton nft_wrap-skeleton">
-                          <div className="nft_coll_pp">
-                            <div className="skeleton pp-coll"></div>
-                          </div>
-                          <div className="nft_coll_info">
-                            <div className="skelDesc__Up"></div>
-                            <div className="skelDesc__Down"></div>
+                {loading
+                  ? //Render 4 sketon slides while loading
+                    [...Array(4)].map((_, id) => (
+                      <div className="keen-slider__slide" key={id}>
+                        <div className="nft_coll skeleton">
+                          <div className="nft_wrap skeleton nft_wrap-skeleton">
+                            <div className="nft_coll_pp">
+                              <div className="skeleton pp-coll"></div>
+                            </div>
+                            <div className="nft_coll_info">
+                              <div className="skelDesc__Up"></div>
+                              <div className="skelDesc__Down"></div>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))
-                ) : (
-                  //Render actual data when loaded
-                  
-                {hotCo.map((hotColl, id) => (
-                  <div className="keen-slider__slide" key={id}>
-                    <div className="nft_coll">
-                      <div className="nft_wrap">
-                        <Link to="/item-details">
-                          <div className="lazy img-fluid"></div>
-                          <img
-                            src={hotColl.nftImage}
-                            className="lazy img-fluid"
-                            alt=""
-                          />
-                        </Link>
-                      </div>
-                      <div className="nft_coll_pp">
-                        <Link to="/author">
-                          <img
-                            className="lazy pp-coll"
-                            src={hotColl.authorImage}
-                            alt=""
-                          />
-                        </Link>
-                        <i className="fa fa-check"></i>
-                      </div>
-                      <div className="nft_coll_info">
-                        <Link to="/explore">
-                          <h4>{hotColl.title}</h4>
-                        </Link>
-                        <span>ERC-{hotColl.code}</span>
-                      </div>
-                      {/* </>
-                      )} */}
-                    </div>
-                  </div>
-                ))}
-                )}
+                    ))
+                  : //Render actual data when loaded
 
+                    hotCo.map((hotColl, id) => (
+                      <div className="keen-slider__slide" key={id}>
+                        <div className="nft_coll">
+                          <div className="nft_wrap">
+                            <Link to="/item-details">
+                              <div className="lazy img-fluid"></div>
+                              <img
+                                src={hotColl.nftImage}
+                                className="lazy img-fluid"
+                                alt=""
+                              />
+                            </Link>
+                          </div>
+                          <div className="nft_coll_pp">
+                            <Link to="/author">
+                              <img
+                                className="lazy pp-coll"
+                                src={hotColl.authorImage}
+                                alt=""
+                              />
+                            </Link>
+                            <i className="fa fa-check"></i>
+                          </div>
+                          <div className="nft_coll_info">
+                            <Link to="/explore">
+                              <h4>{hotColl.title}</h4>
+                            </Link>
+                            <span>ERC-{hotColl.code}</span>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
               </div>
               {instanceRef.current && (
                 <>

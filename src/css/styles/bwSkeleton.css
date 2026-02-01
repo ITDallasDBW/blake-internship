@@ -1,7 +1,6 @@
 .skeleton {
-  /* opacity: .7; */
-  /* animation: skeleton-loading 1s linear infinite alternate; */
-  background-color: red;
+  opacity: .7;
+  animation: skeleton-loading 1s linear infinite alternate;
 }
 @keyframes skeleton-loading {
   0% {
@@ -12,11 +11,11 @@
   }
 }
 
-.skelLoad {
+/* .skelLoad {
   color: red;
-}
+} */
 
-/* .skeleton {
+.skeleton {
   background-color: rgb(227, 227, 227);
 }
 .nft_wrap-skeleton {
@@ -53,4 +52,4 @@
   margin-top: 8px;
   height: 19px;
   width: 50px;
-} */
+}
