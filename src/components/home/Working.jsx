@@ -163,21 +163,23 @@ const Working = () => {
                     ))}
               </div>
               {instanceRef.current && (
-                <>
+                <><div className="arrow-nav">
                   <button
                   type="button"
                     onClick={() => instanceRef.current?.prev()}
-                    className="arrow arrow--left"
+                    className="arrow arrow-prev"
                   >
                     {"<"}
                   </button>
                   <button
                   type="button"
-                    className="arrow arrow--right"
+                    className="arrow arrow-next"
+                    // className="arrow arrow--right"
                     onClick={() => instanceRef.current?.next()}
                   >
-                    {">"}
+                    <span>{">"}</span>
                   </button>
+                  </div>
                 </>
               )}
             </div>
