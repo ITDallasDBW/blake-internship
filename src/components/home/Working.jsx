@@ -12,8 +12,17 @@ const Working = () => {
   //USE STATE
   const [hotCo, setHotCo] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const [keenSize, setKeenSize] = useState(4);
   const navigate = useNavigate();
+
+  //Axios API call
+  async function getHotCo() {
+    const response = await axios.get(BASE_URL);
+    setHotCo(response.data);
+    setLoading(false);
+    console.log(response.data);
+  }
+  console.log(loading);
 
   //KEEN SLIDER
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -49,14 +58,31 @@ const Working = () => {
     },
   });
 
-  //Axios API call
-  async function getHotCo() {
-    const response = await axios.get(BASE_URL);
-    setHotCo(response.data);
-    setLoading(false);
-    console.log(response.data);
-  }
-  console.log(loading);
+  //Defines how many skeleton slides will appear (matching Keen) based on screen size
+  //(per Claude)
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+
+      if (width < 480) {
+        setKeenSize(1);
+      } else if (width < 768) {
+        setKeenSize(2);
+      } else if (width < 1024) {
+        setKeenSize(3);
+      } else {
+        setKeenSize(4);
+      }
+    };
+    console.log("Keen size", keenSize);
+    //Set initial value
+    handleResize();
+    //Add event listener
+    window.addEventListener("resize", handleResize);
+    //Cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  console.log("Keen size", keenSize);
 
   //USE EFFECT
   useEffect(() => {
@@ -64,11 +90,16 @@ const Working = () => {
     getHotCo();
   }, []);
 
+  //previously used hotCo.length useeffect because Keen showed up wrong but then would readjust when win size changed
+    //per Jose, mentor
   // useEffect(() => {
   //   if (hotCo.length > 0 && instanceRef.current) {
   //     instanceRef.current.update();
   //   }
   // }, [hotCo]);
+
+  //ensures Keen loads before hotCo is available.
+  //per Jose, mentor 1/31
   useEffect(() => {
     if (instanceRef.current) {
       instanceRef.current.update();
@@ -83,6 +114,7 @@ const Working = () => {
             <div className="col-lg-12">
               <div className="text-center">
                 <h2>(Dynamic) Hot Collections</h2>
+                <p>Keen slider size: {keenSize}</p>
                 {loading ? (
                   <h3 className="skelLoad">LOADING</h3>
                 ) : (
@@ -95,18 +127,15 @@ const Working = () => {
             <div className="navigation-wrapper">
               <div ref={sliderRef} className="keen-slider">
                 {loading
-                  ? //Render 4 sketon slides while loading
-                    [...Array(4)].map((_, id) => (
+                  ? //Render skeleton slides while loading
+                    [...Array(keenSize || 4)].map((_, id) => (
                       <div className="keen-slider__slide" key={id}>
-                        <div className="nft_coll skeleton">
-                          <div className="nft_wrap skeleton nft_wrap-skeleton">
-                            <div className="nft_coll_pp">
-                              <div className="skeleton pp-coll"></div>
-                            </div>
-                            <div className="nft_coll_info">
-                              <div className="skelDesc__Up"></div>
-                              <div className="skelDesc__Down"></div>
-                            </div>
+                        <div className="nft_coll-skeleton">
+                          <div className="nft_wrap-skeleton"></div>
+                          <div className="nft_coll_pp-skeleton"></div>
+                          <div className="nft_coll_info">
+                            <div className="skelDesc__Upper skeleton"></div>
+                            <div className="skelDesc__Lower skeleton"></div>
                           </div>
                         </div>
                       </div>
