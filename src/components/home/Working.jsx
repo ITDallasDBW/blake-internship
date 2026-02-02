@@ -90,21 +90,13 @@ const Working = () => {
     getHotCo();
   }, []);
 
-  //previously used hotCo.length useeffect because Keen showed up wrong but then would readjust when win size changed
-    //per Jose, mentor
-  // useEffect(() => {
-  //   if (hotCo.length > 0 && instanceRef.current) {
-  //     instanceRef.current.update();
-  //   }
-  // }, [hotCo]);
-
   //ensures Keen loads before hotCo is available.
-  //per Jose, mentor 1/31
+  //per Jose, mentor 1/31, Claude
   useEffect(() => {
     if (instanceRef.current) {
       instanceRef.current.update();
     }
-  }, [hotCo, instanceRef]);
+  }, [hotCo, loading, instanceRef]);
 
   return (
     <>
@@ -141,7 +133,6 @@ const Working = () => {
                       </div>
                     ))
                   : //Render actual data when loaded
-
                     hotCo.map((hotColl, id) => (
                       <div className="keen-slider__slide" key={id}>
                         <div className="nft_coll">

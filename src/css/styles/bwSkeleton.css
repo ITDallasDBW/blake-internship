@@ -1,41 +1,6 @@
-.red {
-  border: 1px solid red;
-  background-color: red;
-}
-.blue {
-    border: 1px solid red;
-
-  background-color: blue;
-}
-.green {
-    /* border: 1px solid red; */
-
-  background-color: green;
-}
-.gray {
-    border: 1px solid red;
-
-  background-color: gray;
-}
-.yellow {
-    border: 1px solid red;
-
-  background-color: yellow;
-}
-.black {
-    border: 1px solid red;
-
-  background-color: black;
-}
-.orange {
-    border: 1px solid red;
-
-  background-color: orange;
-}
-
-
 .skeleton {
-  opacity: .7;
+  opacity: 0.7;
+  background-color: rgb(227, 227, 227);
   animation: skeleton-loading 1s linear infinite alternate;
 }
 @keyframes skeleton-loading {
@@ -47,13 +12,6 @@
   }
 }
 
-/* .skelLoad {
-  color: red;
-} */
-
-.skeleton {
-  background-color: rgb(227, 227, 227);
-}
 .nft_coll-skeleton {
   border: 1px solid rgb(227, 227, 227);
   border-radius: 10px;
@@ -64,8 +22,6 @@
   width: 100%;
   height: 126px;
   border-radius: 10px;
-  /* max-width: 315px; */
-  /* max-height: 126px; */
   background-color: rgb(227, 227, 227);
   overflow: hidden;
 }
@@ -78,8 +34,7 @@
   margin-bottom: 10px;
   position: relative;
   border-radius: 100%;
-    background-color: rgb(227, 227, 227);
-
+  background-color: rgb(227, 227, 227);
 }
 
 .nft_coll_pp p {
@@ -89,7 +44,7 @@
   -moz-border-radius: 100%;
   -webkit-border-radius: 100%;
   border: solid 5px rgb(227, 227, 227);
-    margin-top: -30px;
+  margin-top: -30px;
   margin-bottom: 10px;
 }
 
