@@ -59,7 +59,6 @@ const Working = () => {
   });
 
   //Defines how many skeleton slides will appear (matching Keen) based on screen size
-  //(per Claude)
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
@@ -82,7 +81,6 @@ const Working = () => {
     //Cleanup
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-  console.log("Keen size", keenSize);
 
   //USE EFFECT
   useEffect(() => {
@@ -90,8 +88,6 @@ const Working = () => {
     getHotCo();
   }, []);
 
-  //ensures Keen loads before hotCo is available.
-  //per Jose, mentor 1/31, Claude
   useEffect(() => {
     if (instanceRef.current) {
       instanceRef.current.update();
@@ -169,12 +165,14 @@ const Working = () => {
               {instanceRef.current && (
                 <>
                   <button
+                  type="button"
                     onClick={() => instanceRef.current?.prev()}
                     className="arrow arrow--left"
                   >
                     {"<"}
                   </button>
                   <button
+                  type="button"
                     className="arrow arrow--right"
                     onClick={() => instanceRef.current?.next()}
                   >
