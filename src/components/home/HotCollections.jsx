@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
-
+import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 //HotCollections Task List:
 //1. Fetch slides w/axios from
 // https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections
@@ -112,85 +112,84 @@ const HotCollections = () => {
           <div className="navigation-wrapper">
             <div className="keen-slider" ref={sliderRef}>
               {loading
-                  ? //Render skeleton slides while loading
-                    [...Array(keenSize || 4)].map((_, id) => (
-                      <div className="keen-slider__slide" key={id}>
-                        <div className="nft_coll-skeleton">
-                          <div className="nft_wrap-skeleton"></div>
-                          <div className="nft_coll_pp-skeleton"></div>
-                          <div className="nft_coll_info">
-                            <div className="skelDesc__Upper skeleton"></div>
-                            <div className="skelDesc__Lower skeleton"></div>
-                          </div>
+                ? //Render skeleton slides while loading
+                  [...Array(keenSize || 4)].map((_, id) => (
+                    <div className="keen-slider__slide" key={id}>
+                      <div className="nft_coll-skeleton">
+                        <div className="nft_wrap-skeleton"></div>
+                        <div className="nft_coll_pp-skeleton"></div>
+                        <div className="nft_coll_info">
+                          <div className="skelDesc__Upper skeleton"></div>
+                          <div className="skelDesc__Lower skeleton"></div>
                         </div>
                       </div>
-                    ))
-                                    : //Render actual data when loaded
-                    hotCo.map((hotColl, id) => (
-                      <div className="keen-slider__slide" key={id}>
-                        <div className="nft_coll">
-                          <div className="nft_wrap">
-                            {/* <Link to="/item-details"> */}
-                            <Link
-                              to={`/item-details/${hotColl.nftId}`}
-                              state={{ item: hotColl }}
-                            >
-                              <div className="lazy img-fluid"></div>
-                              <img
-                                src={hotColl.nftImage}
-                                className="lazy img-fluid"
-                                alt=""
-                              />
-                            </Link>
-                          </div>
-                          <div className="nft_coll_pp">
-                            <Link to="/author">
-                              <img
-                                className="lazy pp-coll"
-                                src={hotColl.authorImage}
-                                alt=""
-                              />
-                            </Link>
-                            <i className="fa fa-check"></i>
-                          </div>
-                          <div className="nft_coll_info">
-                            <Link to="/explore">
-                              <h4>{hotColl.title}</h4>
-                            </Link>
-                            <span>ERC-{hotColl.code}</span>
-                          </div>
+                    </div>
+                  ))
+                : //Render actual data when loaded
+                  hotCo.map((hotColl, id) => (
+                    <div className="keen-slider__slide" key={id}>
+                      <div className="nft_coll">
+                        <div className="nft_wrap">
+                          <Link
+                            to={`/item-details/${hotColl.nftId}`}
+                            // state={{ item: hotColl }}
+                          >
+                            <img
+                              src={hotColl.nftImage}
+                              className="lazy img-fluid"
+                              alt=""
+                            />
+                          </Link>
+                        </div>
+                        <div className="nft_coll_pp">
+                          <Link to="/author">
+                            <img
+                              className="lazy pp-coll"
+                              src={hotColl.authorImage}
+                              alt=""
+                            />
+                          </Link>
+                          <i className="fa fa-check"></i>
+                        </div>
+                        <div className="nft_coll_info">
+                          <Link to="/explore">
+                            <h4>{hotColl.title}</h4>
+                          </Link>
+                          <span>ERC-{hotColl.code}</span>
                         </div>
                       </div>
-                    ))}
-
-
-              </div>
-                   {instanceRef.current && (
-                <>
-                  <div className="arrow-nav">
-                    <button
-                      type="button"
-                      onClick={() => instanceRef.current?.prev()}
-                      className="arrow arrow-prev"
-                    >
-                      {"<"}
-                    </button>
-                    <button
-                      type="button"
-                      className="arrow arrow-next"
-                      onClick={() => instanceRef.current?.next()}
-                    >
-                      <span>{">"}</span>
-                    </button>
-                  </div>
-                </>
-              )}
+                    </div>
+                  ))}
             </div>
+            {instanceRef.current && (
+              <>
+                <div className="owl-nav">
+                  <button
+                    type="button"
+                    onClick={() => instanceRef.current?.prev()}
+                    className="owl-prev"
+                  >
+                    <span>
+                      <BsChevronCompactLeft />
+                    </span>
+                    {/* {"<"} */}
+                  </button>
+                  <button
+                    type="button"
+                    className="owl-next"
+                    onClick={() => instanceRef.current?.next()}
+                  >
+                    {/* {">"} */}
+                    <span>
+                      <BsChevronCompactRight />
+                    </span>
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
 
-
-
-
-            {/* 
+          {/* 
           {new Array(4).fill(0).map((_, index) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={id}>
               <div className="nft_coll">
