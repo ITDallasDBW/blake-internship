@@ -20,9 +20,7 @@ const Working = () => {
     const response = await axios.get(BASE_URL);
     setHotCo(response.data);
     setLoading(false);
-    console.log(response.data);
   }
-  console.log(loading);
 
   //KEEN SLIDER
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -73,7 +71,6 @@ const Working = () => {
         setKeenSize(4);
       }
     };
-    console.log("Keen size", keenSize);
     //Set initial value
     handleResize();
     //Add event listener
@@ -118,12 +115,24 @@ const Working = () => {
                   ? //Render skeleton slides while loading
                     [...Array(keenSize || 4)].map((_, id) => (
                       <div className="keen-slider__slide" key={id}>
-                        <div className="nft_coll-skeleton">
-                          <div className="nft_wrap-skeleton"></div>
-                          <div className="nft_coll_pp-skeleton"></div>
+                        <div className="nft_coll">
+                          <div className="nft_wrap">
+                            <a href="/">
+                              <div className="skeleton-box wrapSkel"></div>
+                            </a>
+                          </div>
+                          <div className="nft_coll_pp">
+                            <a href="/">
+                              <div className="skeleton-box ppSkel"></div>
+                            </a>
+                            <i className="fa fa-check"></i>
+                          </div>
                           <div className="nft_coll_info">
-                            <div className="skelDesc__Upper skeleton"></div>
-                            <div className="skelDesc__Lower skeleton"></div>
+                            <a href="/">
+                              <div className="skeleton-box infoSkel--top"></div>
+                            </a>
+                            <br />
+                            <div className="skeleton-box infoSkel--bottom"></div>
                           </div>
                         </div>
                       </div>
@@ -133,7 +142,10 @@ const Working = () => {
                       <div className="keen-slider__slide" key={id}>
                         <div className="nft_coll">
                           <div className="nft_wrap">
-                            <Link to="/item-details">
+                            <Link
+                              to={`/item-details/${hotColl.nftId}`}
+                              state={{ item: hotColl }}
+                            >
                               <div className="lazy img-fluid"></div>
                               <img
                                 src={hotColl.nftImage}
@@ -163,22 +175,22 @@ const Working = () => {
                     ))}
               </div>
               {instanceRef.current && (
-                <><div className="arrow-nav">
-                  <button
-                  type="button"
-                    onClick={() => instanceRef.current?.prev()}
-                    className="arrow arrow-prev"
-                  >
-                    {"<"}
-                  </button>
-                  <button
-                  type="button"
-                    className="arrow arrow-next"
-                    // className="arrow arrow--right"
-                    onClick={() => instanceRef.current?.next()}
-                  >
-                    <span>{">"}</span>
-                  </button>
+                <>
+                  <div className="arrow-nav">
+                    <button
+                      type="button"
+                      onClick={() => instanceRef.current?.prev()}
+                      className="arrow arrow-prev"
+                    >
+                      {"<"}
+                    </button>
+                    <button
+                      type="button"
+                      className="arrow arrow-next"
+                      onClick={() => instanceRef.current?.next()}
+                    >
+                      <span>{">"}</span>
+                    </button>
                   </div>
                 </>
               )}

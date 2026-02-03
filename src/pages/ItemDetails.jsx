@@ -8,6 +8,7 @@ const ItemDetails = () => {
   const {id}=useParams();
   const location=useLocation();
   const item=location.state.item;
+  console.log(id)
 
   useEffect(() => {
     window.scrollTo(0, 0);
