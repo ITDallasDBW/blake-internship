@@ -3,6 +3,16 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 
+
+//HotCollections Task List:
+//1. Fetch slides w/axios from
+// https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections
+//2. map array into HotCollections
+//3. Use owl, keen or react slick slider to carousel images
+//4. Push nftId to url on image click
+
+const BASE_URL="https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
+
 const HotCollections = () => {
   return (
     <section id="section-collections" className="no-bottom">
