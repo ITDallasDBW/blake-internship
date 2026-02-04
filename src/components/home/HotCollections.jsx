@@ -148,14 +148,7 @@ const HotCollections = () => {
                           <Skeleton width="60px" height="20px" />
                         </div>
                       </div>
-                      {/* <div className="nft_coll-skeleton">
-                        <div className="nft_wrap-skeleton"></div>
-                        <div className="nft_coll_pp-skeleton"></div>
-                        <div className="nft_coll_info">
-                          <div className="skelDesc__Upper skeleton"></div>
-                          <div className="skelDesc__Lower skeleton"></div>
-                        </div>
-                      </div> */}
+
                     </div>
                   ))
                 : //Render actual data when loaded
@@ -165,7 +158,7 @@ const HotCollections = () => {
                         <div className="nft_wrap">
                           <Link
                             to={`/item-details/${hotColl.nftId}`}
-                            // state={{ item: hotColl }}
+                            state={{ item: hotColl }}
                           >
                             <img
                               src={hotColl.nftImage}
