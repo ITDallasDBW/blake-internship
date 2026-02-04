@@ -3,7 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
-import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
+import { TbChevronCompactLeft, TbChevronCompactRight } from "react-icons/tb";
+import Skeleton from "../UI/Skeleton";
+
 //HotCollections Task List:
 //1. Fetch slides w/axios from
 // https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections
@@ -42,21 +44,28 @@ const HotCollections = () => {
       },
     },
     breakpoints: {
-      "(max-width: 1024px)": {
+      //widths to match model
+      "(min-width:0px)": {
         slides: {
-          perView: 3,
+          perView: 1,
           spacing: 10,
         },
       },
-      "(max-width: 768px)": {
+      "(min-width:600px)": {
         slides: {
           perView: 2,
           spacing: 10,
         },
       },
-      "(max-width: 480px)": {
+      "(min-width:900px)": {
         slides: {
-          perView: 1,
+          perView: 3,
+          spacing: 10,
+        },
+      },
+      "(min-width:1200px)": {
+        slides: {
+          perView: 4,
           spacing: 10,
         },
       },
@@ -68,14 +77,14 @@ const HotCollections = () => {
     const handleResize = () => {
       const width = window.innerWidth;
 
-      if (width < 480) {
-        setKeenSize(1);
-      } else if (width < 768) {
-        setKeenSize(2);
-      } else if (width < 1024) {
-        setKeenSize(3);
-      } else {
+      if (width > 1200) {
         setKeenSize(4);
+      } else if (width > 900) {
+        setKeenSize(3);
+      } else if (width > 600) {
+        setKeenSize(2);
+      } else {
+        setKeenSize(1);
       }
     };
     //Set initial value
@@ -115,14 +124,38 @@ const HotCollections = () => {
                 ? //Render skeleton slides while loading
                   [...Array(keenSize || 4)].map((_, id) => (
                     <div className="keen-slider__slide" key={id}>
-                      <div className="nft_coll-skeleton">
+                      <div className="nft_coll">
+                        <div className="nft_wrap">
+                          <Link to={``}>
+                            <Skeleton width="100%" height="200px" />
+                          </Link>
+                        </div>
+                        <div className="nft_coll_pp">
+                          <Link to={``}>
+                            <Skeleton
+                              width="50px"
+                              height="50px"
+                              borderRadius="50%"
+                            />
+                          </Link>
+                          <i className="fa fa-check"></i>
+                        </div>
+                        <div className="nft_coll_info">
+                          <Link to="">
+                            <Skeleton width="100px" height="20px" />
+                          </Link>
+                          <br />
+                          <Skeleton width="60px" height="20px" />
+                        </div>
+                      </div>
+                      {/* <div className="nft_coll-skeleton">
                         <div className="nft_wrap-skeleton"></div>
                         <div className="nft_coll_pp-skeleton"></div>
                         <div className="nft_coll_info">
                           <div className="skelDesc__Upper skeleton"></div>
                           <div className="skelDesc__Lower skeleton"></div>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   ))
                 : //Render actual data when loaded
@@ -169,20 +202,15 @@ const HotCollections = () => {
                     onClick={() => instanceRef.current?.prev()}
                     className="owl-prev"
                   >
-                    <span>
-                      <BsChevronCompactLeft />
-                    </span>
-                    {/* {"<"} */}
+                    <span></span>
+                    {"<"}
                   </button>
                   <button
                     type="button"
                     className="owl-next"
                     onClick={() => instanceRef.current?.next()}
                   >
-                    {/* {">"} */}
-                    <span>
-                      <BsChevronCompactRight />
-                    </span>
+                    <span>{">"}</span>
                   </button>
                 </div>
               </>
