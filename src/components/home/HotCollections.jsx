@@ -148,7 +148,6 @@ const HotCollections = () => {
                           <Skeleton width="60px" height="20px" />
                         </div>
                       </div>
-
                     </div>
                   ))
                 : //Render actual data when loaded
@@ -209,39 +208,6 @@ const HotCollections = () => {
               </>
             )}
           </div>
-
-          {/* 
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={id}>
-              <div className="nft_coll">
-                <div className="nft_wrap">
-                  <Link to="/item-details">
-                    <img
-                      src={hotColl.nftImage}
-                      className="lazy img-fluid"
-                      alt=""
-                    />
-                  </Link>
-                </div>
-                <div className="nft_coll_pp">
-                  <Link to="/author">
-                    <img
-                      className="lazy pp-coll"
-                      src={hotColl.authorImage}
-                      alt=""
-                    />
-                  </Link>
-                  <i className="fa fa-check"></i>
-                </div>
-                <div className="nft_coll_info">
-                  <Link to="/explore">
-                    <h4>{hotColl.title}</h4>
-                  </Link>
-                  <span>ERC-{hotColl.code}</span>
-                </div>
-              </div>
-            </div>
-          ))} */}
         </div>
       </div>
     </section>
