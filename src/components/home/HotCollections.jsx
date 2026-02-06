@@ -19,7 +19,7 @@ const HotCollections = () => {
   const [hotCo, setHotCo] = useState([]);
   const [loading, setLoading] = useState(false);
   const [keenSize, setKeenSize] = useState(4);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   //Axios API call
   async function getHotCo() {
