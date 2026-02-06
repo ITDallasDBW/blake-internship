@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import EthImage from "../images/ethereum.svg";
 import { Link, useLocation, useParams } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
-import nftImage from "../images/nftImage.jpg";
 
 const ItemDetails = () => {
   const { id } = useParams();
