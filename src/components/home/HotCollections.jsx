@@ -26,7 +26,7 @@ const HotCollections = () => {
     const response = await axios.get(BASE_URL);
     setHotCo(response.data);
     setLoading(false);
-    console.log(response.data);
+    // console.log(response.data);
   }
 
   //KEEN SLIDER
