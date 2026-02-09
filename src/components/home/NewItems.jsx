@@ -5,6 +5,7 @@ import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import { useKeenSlider } from "keen-slider/react";
 import Skeleton from "../UI/Skeleton";
+import CountDown from "../CountDown";
 
 //newitems Task List:
 //1. Fetch slides w/axios from API
@@ -203,9 +204,9 @@ const NewItems = () => {
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
-                        {/* {item.expiryDate && (
+                        {item.expiryDate && (
                           <CountDown expiryDate={item.expiryDate} />
-                        )} */}
+                        )}
                         <div className="nft__item_wrap">
                           <div className="nft__item_extra">
                             <div className="nft__item_buttons">
