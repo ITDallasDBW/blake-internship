@@ -12,8 +12,8 @@ import CountDown from "../CountDown";
 //2. Map array into New Items
 //3. Use keen to carousel images
 //4. Push authorId to author url on click
-//Push nftId to item details url on click
-//Implement countdown timer (Date.now)
+//  Push nftId to item-details url on click
+//5. Implement countdown timer (Date.now)
 
 const BASE_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
@@ -88,9 +88,9 @@ const NewItems = () => {
         setKeenSize(1);
       }
     };
-    //Set initial value
+    //Initial value
     handleResize();
-    //Add event listener
+    //Event listener
     window.addEventListener("resize", handleResize);
     //Cleanup
     return () => window.removeEventListener("resize", handleResize);
@@ -186,26 +186,26 @@ const NewItems = () => {
                     </div>
                   ))
                 : //Render actual data when loaded
-                  newFetch.map((item, index) => (
-                    <div className="keen-slider__slide">
-                      <div className="nft__item" key={index}>
+                  newFetch.map((newItem, id) => (
+                    <div className="keen-slider__slide" key={id}>
+                      <div className="nft__item" >
                         <div className="author_list_pp">
                           <Link
-                            to={`author/${item.authorId}`}
+                            to={`author/${newItem.authorId}`}
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
                             title="Creator: Monica Lucas"
                           >
                             <img
-                              src={item.authorImage}
+                              src={newItem.authorImage}
                               alt=""
                               className="lazy"
                             />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
-                        {item.expiryDate && (
-                          <CountDown expiryDate={item.expiryDate} />
+                        {newItem.expiryDate && (
+                          <CountDown expiryDate={newItem.expiryDate} />
                         )}
                         <div className="nft__item_wrap">
                           <div className="nft__item_extra">
@@ -234,30 +234,34 @@ const NewItems = () => {
                             </div>
                           </div>
 
-                          <Link to={`/item-details/${item.nftId}`}>
+                          <Link
+                            to={`/item-details/${newItem.nftId}`}
+                            // state={{ item: newItem }}
+                          >
                             <img
-                              src={item.nftImage}
+                              src={newItem.nftImage}
                               alt=""
                               className="lazy nft__item_preview"
                             />
                           </Link>
                         </div>
                         <div className="nft__item_info">
-                          <Link to={`/item-details/${item.nftId}`}>
-                          <h4>{item.title}</h4>
+                          <Link to={`/item-details/${newItem.nftId}`}>
+                            <h4>{newItem.title}</h4>
                           </Link>
-                          <div className="nft__item_price">{item.price} ETH</div>
+                          <div className="nft__item_price">
+                            {newItem.price} ETH
+                          </div>
                           <div className="nft__item_like">
                             <i className="fa fa-heart"></i>
-                            <span>{item.likes}</span>
+                            <span>{newItem.likes}</span>
                           </div>
                         </div>
                       </div>
-                      
                     </div>
                   ))}
             </div>
-                        {instanceRef.current && (
+            {instanceRef.current && (
               <>
                 <div className="owl-nav">
                   <button
@@ -286,4 +290,3 @@ const NewItems = () => {
 };
 
 export default NewItems;
-

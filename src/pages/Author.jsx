@@ -1,10 +1,15 @@
 import React from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 
 const Author = () => {
+// const {id}=useParams();
+// const location=useLocation();
+// const item=location.state.item;
+
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">

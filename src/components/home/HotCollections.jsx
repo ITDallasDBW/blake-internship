@@ -19,14 +19,12 @@ const HotCollections = () => {
   const [hotCo, setHotCo] = useState([]);
   const [loading, setLoading] = useState(false);
   const [keenSize, setKeenSize] = useState(4);
-  // const navigate = useNavigate();
 
   //Axios API call
   async function getHotCo() {
     const response = await axios.get(BASE_URL);
     setHotCo(response.data);
     setLoading(false);
-    // console.log(response.data);
   }
 
   //KEEN SLIDER
@@ -85,9 +83,9 @@ const HotCollections = () => {
         setKeenSize(1);
       }
     };
-    //Set initial value
+    //Initial value
     handleResize();
-    //Add event listener
+    //Event listener
     window.addEventListener("resize", handleResize);
     //Cleanup
     return () => window.removeEventListener("resize", handleResize);
@@ -155,7 +153,6 @@ const HotCollections = () => {
                         <div className="nft_wrap">
                           <Link
                             to={`/item-details/${hotColl.nftId}`}
-                            state={{ item: hotColl }}
                           >
                             <img
                               src={hotColl.nftImage}
@@ -165,7 +162,7 @@ const HotCollections = () => {
                           </Link>
                         </div>
                         <div className="nft_coll_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${hotColl.authorId}`}>                      
                             <img
                               className="lazy pp-coll"
                               src={hotColl.authorImage}
