@@ -20,16 +20,16 @@ const BASE_URL =
 
 const NewItems = () => {
   //USE STATE
-  const [newFetch, setNewFetch] = useState([]);
+  const [newItems, setNewItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [keenSize, setKeenSize] = useState(4);
 
   //Axios API call
-  async function getNewFetch() {
+  async function getNewItems() {
     const response = await axios.get(BASE_URL);
-    setNewFetch(response.data);
+    setNewItems(response.data);
     setLoading(false);
-    console.log(response.data);
+    // console.log(response.data);
   }
 
   //KEEN SLIDER
@@ -99,14 +99,14 @@ const NewItems = () => {
   //USE EFFECT
   useEffect(() => {
     setLoading(true);
-    getNewFetch();
+    getNewItems();
   }, []);
 
   useEffect(() => {
     if (instanceRef.current) {
       instanceRef.current.update();
     }
-  }, [newFetch, loading, instanceRef]);
+  }, [newItems, loading, instanceRef]);
 
   return (
     <section id="section-items" className="no-bottom">
@@ -186,26 +186,26 @@ const NewItems = () => {
                     </div>
                   ))
                 : //Render actual data when loaded
-                  newFetch.map((newItem, id) => (
+                  newItems.map((item, id) => (
                     <div className="keen-slider__slide" key={id}>
                       <div className="nft__item" >
                         <div className="author_list_pp">
                           <Link
-                            to={`author/${newItem.authorId}`}
+                            to={`author/${item.authorId}`}
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
                             title="Creator: Monica Lucas"
                           >
                             <img
-                              src={newItem.authorImage}
+                              src={item.authorImage}
                               alt=""
                               className="lazy"
                             />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
-                        {newItem.expiryDate && (
-                          <CountDown expiryDate={newItem.expiryDate} />
+                        {item.expiryDate && (
+                          <CountDown expiryDate={item.expiryDate} />
                         )}
                         <div className="nft__item_wrap">
                           <div className="nft__item_extra">
@@ -235,26 +235,26 @@ const NewItems = () => {
                           </div>
 
                           <Link
-                            to={`/item-details/${newItem.nftId}`}
-                            // state={{ item: newItem }}
+                            to={`/item-details/${item.nftId}`}
+                            // state={{ item: item }}
                           >
                             <img
-                              src={newItem.nftImage}
+                              src={item.nftImage}
                               alt=""
                               className="lazy nft__item_preview"
                             />
                           </Link>
                         </div>
                         <div className="nft__item_info">
-                          <Link to={`/item-details/${newItem.nftId}`}>
-                            <h4>{newItem.title}</h4>
+                          <Link to={`/item-details/${item.nftId}`}>
+                            <h4>{item.title}</h4>
                           </Link>
                           <div className="nft__item_price">
-                            {newItem.price} ETH
+                            {item.price} ETH
                           </div>
                           <div className="nft__item_like">
                             <i className="fa fa-heart"></i>
-                            <span>{newItem.likes}</span>
+                            <span>{item.likes}</span>
                           </div>
                         </div>
                       </div>

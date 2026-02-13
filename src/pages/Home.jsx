@@ -5,6 +5,7 @@ import Landing from "../components/home/Landing";
 import LandingIntro from "../components/home/LandingIntro";
 import NewItems from "../components/home/NewItems";
 import TopSellers from "../components/home/TopSellers";
+import Holder from "../components/home/Holder";
 
 const Home = () => {
   useEffect(() => {
@@ -15,6 +16,10 @@ const Home = () => {
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
+        <br />
+        <br />
+        <Holder />
+        <NewItems />
         <Landing />
         <LandingIntro />
         <HotCollections />
