@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import { useKeenSlider } from "keen-slider/react";
-import Skeleton from "../UI/Skeleton";
-import CountDown from "../CountDown";
 import NftCard from "../UI/NftCard";
 
-//newitems Task List:
-//1. Fetch slides w/axios from API
-//2. Map array into New Items
-//3. Use keen to carousel images
-//4. Push authorId to author url on click
-//  Push nftId to item-details url on click
-//5. Implement countdown timer (Date.now)
 
 const BASE_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
@@ -123,7 +111,7 @@ const NewItems = () => {
           <div className="navigation-wrapper">
             <div className="keen-slider" ref={sliderRef}>
               {newItems.length === 0
-                ? // {loading
+                ? 
                   //Render skeleton slides while loading
                   [...Array(keenSize || 4)].map((_, id) => (
                     <div className="keen-slider__slide" key={id}>

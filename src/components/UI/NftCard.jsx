@@ -5,24 +5,13 @@ import CountDown from "../CountDown";
 
 const NftCard = ({ data }) => {
   const [loading, setLoading] = useState(true);
-  // console.log(data)
 
-  if (loading) {
-    // console.log("loading true");
-    // setLoading(false);
-    // console.log(data)
-  } else {
-    // console.log("loading false");
-  }
   useEffect(() => {
     data && setLoading(false);
   }, [data]);
 
   return (
     <>
-      {/* <h1>NftCard</h1> */}
-      {/* {data ? <h1>Data</h1> : <h1>No data</h1>}
-      {loading ? <h1>Loading</h1> : <h1>Not Loading</h1>} */}
       {loading ? (
         <>
           {/* Loading State */}

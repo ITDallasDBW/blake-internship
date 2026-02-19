@@ -3,33 +3,20 @@ import { Link } from "react-router-dom";
 import NftCard from "../UI/NftCard";
 import axios from "axios";
 
-//ExploreItems Task List:
-//1. Countdown Timer
-//2. Create NftCard.jsx as reusable component between NewItems and ExploreItems
-//3. Load More button (return 8, then 4, then 4, then disappear)
-//4. Skeleton loading
-//3. Make ranking filter work with new API route
+const BASE_URL = `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`;
 
-  const BASE_URL =
-  `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`;
-  
 const ExploreItems = () => {
   const [exploreItems, setExploreItems] = useState([]);
-  // const [loading, setLoading] = useState(true);
   const [sliceViz, setSliceViz] = useState(8);
-  const [rank, setRank]=useState("")
-  const [suffix, setSuffix]=useState("")
-
-
+  const [rank, setRank] = useState("");
+  const [suffix, setSuffix] = useState("");
 
   //Axios BASE API call
   async function getExploreItems() {
-    const response = await axios.get(BASE_URL+suffix);
+    const response = await axios.get(BASE_URL + suffix);
     setExploreItems(response.data);
-    // setLoading(false);
-    // console.log(response.data);
   }
-
+  //Function for Load More button
   function loadMore() {
     sliceViz < 16 && setSliceViz(sliceViz + 4);
   }
@@ -37,11 +24,10 @@ const ExploreItems = () => {
   useEffect(() => {
     getExploreItems();
   }, [rank]);
-  
-  const handleRank=(event)=> {
+  //Function for Select Option
+  const handleRank = (event) => {
     setRank(event.target.value);
-    setSuffix(`?filter=${event.target.value}`)
-    // console.log(event.target.value)
+    setSuffix(`?filter=${event.target.value}`);
   };
 
   return (
