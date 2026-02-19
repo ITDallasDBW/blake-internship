@@ -10,6 +10,9 @@ import axios from "axios";
 //4. Skeleton loading
 //3. Make ranking filter work with new API route
 
+  const BASE_URL =
+  `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`;
+  
 const ExploreItems = () => {
   const [exploreItems, setExploreItems] = useState([]);
   // const [loading, setLoading] = useState(true);
@@ -17,8 +20,7 @@ const ExploreItems = () => {
   const [rank, setRank]=useState("")
   const [suffix, setSuffix]=useState("")
 
-  const BASE_URL =
-  `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore`;
+
 
   //Axios BASE API call
   async function getExploreItems() {
