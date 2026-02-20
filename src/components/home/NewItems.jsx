@@ -1,33 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import { useKeenSlider } from "keen-slider/react";
-import Skeleton from "../UI/Skeleton";
-import CountDown from "../CountDown";
+import NftCard from "../UI/NftCard";
 
-//newitems Task List:
-//1. Fetch slides w/axios from API
-//2. Map array into New Items
-//3. Use keen to carousel images
-//4. Push authorId to author url on click
-//  Push nftId to item-details url on click
-//5. Implement countdown timer (Date.now)
 
 const BASE_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
 
 const NewItems = () => {
   //USE STATE
-  const [newFetch, setNewFetch] = useState([]);
+  const [newItems, setNewItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [keenSize, setKeenSize] = useState(4);
 
   //Axios API call
-  async function getNewFetch() {
+  async function getNewItems() {
     const response = await axios.get(BASE_URL);
-    setNewFetch(response.data);
+    setNewItems(response.data);
     setLoading(false);
     console.log(response.data);
   }
@@ -99,14 +88,14 @@ const NewItems = () => {
   //USE EFFECT
   useEffect(() => {
     setLoading(true);
-    getNewFetch();
+    getNewItems();
   }, []);
 
   useEffect(() => {
     if (instanceRef.current) {
       instanceRef.current.update();
     }
-  }, [newFetch, loading, instanceRef]);
+  }, [newItems, loading, instanceRef]);
 
   return (
     <section id="section-items" className="no-bottom">
@@ -121,143 +110,18 @@ const NewItems = () => {
 
           <div className="navigation-wrapper">
             <div className="keen-slider" ref={sliderRef}>
-              {loading
-                ? //Render skeleton slides while loading
+              {newItems.length === 0
+                ? 
+                  //Render skeleton slides while loading
                   [...Array(keenSize || 4)].map((_, id) => (
                     <div className="keen-slider__slide" key={id}>
-                      <div className="nft__item">
-                        <div className="author_list_pp">
-                          <Link
-                            to="/"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            title="Creator: Monica Lucas"
-                          >
-                            <Skeleton
-                              width="50px"
-                              height="50px"
-                              borderRadius="50%"
-                            />
-                            <i className="fa fa-check"></i>
-                          </Link>
-                        </div>
-
-                        <div className="nft__item_wrap">
-                          <div className="nft__item_extra">
-                            <div className="nft__item_buttons">
-                              <button>Buy Now</button>
-                              <div className="nft__item_share">
-                                <h4>Share</h4>
-                                <a
-                                  href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                  target="_blank"
-                                  rel="noreferrer"
-                                >
-                                  <i className="fa fa-facebook fa-lg"></i>
-                                </a>
-                                <a
-                                  href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                  target="_blank"
-                                  rel="noreferrer"
-                                >
-                                  <i className="fa fa-twitter fa-lg"></i>
-                                </a>
-                                <a href="mailto:?subject=I%20wanted%20you%20to%20see%20this%20site&body=Check%20out%20this%20site%20https://gigaland.io">
-                                  <i className="fa fa-envelope fa-lg"></i>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-
-                          <Link to={``}>
-                            <Skeleton width="100%" height="350px" />
-                          </Link>
-                        </div>
-                        <div className="nft__item_info">
-                          <Link to={``}>
-                            <Skeleton width="180px" height="30px" />
-                          </Link>
-                          <Skeleton width="100px" height="20px" />
-                        </div>
-                        <div className="nft__item_like">
-                          <Skeleton width="30px" height="15px" />
-                        </div>
-                      </div>
+                      <NftCard data={null} />
                     </div>
                   ))
                 : //Render actual data when loaded
-                  newFetch.map((newItem, id) => (
+                  newItems.map((newItem, id) => (
                     <div className="keen-slider__slide" key={id}>
-                      <div className="nft__item" >
-                        <div className="author_list_pp">
-                          <Link
-                            to={`author/${newItem.authorId}`}
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            title="Creator: Monica Lucas"
-                          >
-                            <img
-                              src={newItem.authorImage}
-                              alt=""
-                              className="lazy"
-                            />
-                            <i className="fa fa-check"></i>
-                          </Link>
-                        </div>
-                        {newItem.expiryDate && (
-                          <CountDown expiryDate={newItem.expiryDate} />
-                        )}
-                        <div className="nft__item_wrap">
-                          <div className="nft__item_extra">
-                            <div className="nft__item_buttons">
-                              <button>Buy Now</button>
-                              <div className="nft__item_share">
-                                <h4>Share</h4>
-                                <a
-                                  href="https://www.facebook.com/sharer/sharer.php?u=https://gigaland.io"
-                                  target="_blank"
-                                  rel="noreferrer"
-                                >
-                                  <i className="fa fa-facebook fa-lg"></i>
-                                </a>
-                                <a
-                                  href="https://twitter.com/intent/tweet?url=https://gigaland.io"
-                                  target="_blank"
-                                  rel="noreferrer"
-                                >
-                                  <i className="fa fa-twitter fa-lg"></i>
-                                </a>
-                                <a href="mailto:?subject=I wanted you to see this site&amp;body=Check out this site https://gigaland.io">
-                                  <i className="fa fa-envelope fa-lg"></i>
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-
-                          <Link
-                            to={`/item-details/${newItem.nftId}`}
-                            // state={{ item: newItem }}
-                          >
-                            <img
-                              src={newItem.nftImage}
-                              alt=""
-                              className="lazy nft__item_preview"
-                            />
-                          </Link>
-                        </div>
-                        <div className="nft__item_info">
-                          <Link to={`/item-details/${newItem.nftId}`}>
-                            <h4>{newItem.title}</h4>
-                          </Link>
-                          <div className="nft__item_price">
-                            {newItem.price} ETH
-                          </div>
-                          <div className="nft__item_like">
-                            <i className="fa fa-heart"></i>
-                            <span>{newItem.likes}</span>
-                          </div>
-                        </div>
-                      </div>
+                      <NftCard data={newItem} />
                     </div>
                   ))}
             </div>

@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 import Skeleton from "../UI/Skeleton";
-
-//HotCollections Task List:
-//1. Fetch slides w/axios from API
-//2. Map array into HotCollections
-//3. Use owl, keen or react slick slider to carousel images
-//4. Push nftId to url on image click
 
 const BASE_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";

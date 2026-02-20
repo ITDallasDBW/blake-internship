@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
 import Skeleton from "../UI/Skeleton";
-
-//Tasks for Top Sellers:
-//1. Populate per dynamic data from API
-//2. Skeleton loading state
-//3. Onclick pic or name, append authorId to /author/
 
 const BASE_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers";
@@ -56,16 +50,16 @@ const TopSellers = () => {
                         <i className="fa fa-check"></i>
                       </div>
                       <div className="author_list_info">
-                          <Link to="">
-                            <Skeleton width="100px" height="20px" />
-                          </Link>
-                          <br />
-                          <Skeleton width="60px" height="20px" />
+                        <Link to="">
+                          <Skeleton width="100px" height="20px" />
+                        </Link>
+                        <br />
+                        <Skeleton width="60px" height="20px" />
                       </div>
                     </li>
                   ))
                 : //Render actual data when loaded
-                topSell.map((tops, id) => (
+                  topSell.map((tops, id) => (
                     <li key={id}>
                       <div className="author_list_pp">
                         <Link to={`/author/${tops.authorId}`}>
@@ -78,7 +72,9 @@ const TopSellers = () => {
                         </Link>
                       </div>
                       <div className="author_list_info">
-                        <Link to={`/author/${tops.authorId}`}>{tops.authorName}</Link>
+                        <Link to={`/author/${tops.authorId}`}>
+                          {tops.authorName}
+                        </Link>
                         <span>{tops.price} ETH</span>
                       </div>
                     </li>
