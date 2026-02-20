@@ -18,7 +18,7 @@ const NftCard = ({ data }) => {
           <div className="nft__item">
             <div className="author_list_pp">
               <Link
-                to="/author"
+                to="../author"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
               >
@@ -32,7 +32,7 @@ const NftCard = ({ data }) => {
               </Link>
             </div>
             <div className="nft__item_info">
-              <Link to="/item-details">
+              <Link to="../item-details">
                 <Skeleton width="180px" height="30px" />
               </Link>
               <Skeleton width="100px" height="20px" />
@@ -48,7 +48,7 @@ const NftCard = ({ data }) => {
           <div className="nft__item">
             <div className="author_list_pp">
               <Link
-                to={`author/${data.authorId}`}
+                to={`../author/${data.authorId}`}
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
                 title="Creator: Monica Lucas"
@@ -85,7 +85,7 @@ const NftCard = ({ data }) => {
                 </div>
               </div>
 
-              <Link to={`/item-details/${data.nftId}`}>
+              <Link to={`../item-details/${data.nftId}`}>
                 <img
                   src={data.nftImage}
                   alt=""
@@ -94,7 +94,7 @@ const NftCard = ({ data }) => {
               </Link>
             </div>
             <div className="nft__item_info">
-              <Link to={`/item-details/${data.nftId}`}>
+              <Link to={`../item-details/${data.nftId}`}>
                 <h4>{data.title}</h4>
               </Link>
               <div className="nft__item_price">{data.price} ETH</div>
@@ -103,7 +103,7 @@ const NftCard = ({ data }) => {
                 <span>{data.likes}</span>
               </div>
             </div>
-          </div>{" "}
+          </div>
         </>
       )}
     </>

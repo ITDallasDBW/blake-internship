@@ -4,6 +4,14 @@ import AuthorItems from "../components/author/AuthorItems";
 import { Link, useParams, useLocation } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 
+const BASE_URL =
+  "https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=73855012";
+
+  //1. Use NftCard for HotCollections
+  //2. Use NftCard for Author
+  //
+  //
+
 const Author = () => {
 // const {id}=useParams();
 // const location=useLocation();
