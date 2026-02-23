@@ -21,14 +21,15 @@ const NftCard = ({ data, authorImage }) => {
                 to="../author"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
+                className="image-wrapper"
               >
                 <Skeleton width="50px" height="50px" borderRadius="50%" />
                 <i className="fa fa-check"></i>
               </Link>
             </div>
             <div className="nft__item_wrap">
-              <Link to="/item-details">
-                <Skeleton width="100%" height="350px" />
+              <Link to="/item-details" className="image-wrapper">
+                <Skeleton width="100%" height="100%" />
               </Link>
             </div>
             <div className="nft__item_info">
@@ -52,6 +53,7 @@ const NftCard = ({ data, authorImage }) => {
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
                 title="Creator"
+                className="image-wrapper"
               >
                 {/* Accommodate varying data from API */}
                 <img
@@ -94,7 +96,7 @@ const NftCard = ({ data, authorImage }) => {
                 <img
                   src={data.nftImage}
                   alt=""
-                  className="lazy nft__item_preview"
+                  className="lazy nft__item_preview image-wrapper"
                 />
               </Link>
             </div>
