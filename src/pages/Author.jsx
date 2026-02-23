@@ -8,12 +8,12 @@ import Skeleton from "../components/UI/Skeleton";
 const BASE_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=";
 
-//1. Use NftCard for HotCollections
-//2. Make author dynamic by pulling authorId from URL, sending to API
-//3. Use NftCard for Author
-//4. Include skeleton loading state
-//5. Make followers dynamic (Follow/Unfollow button) LOCALLY
-//6. Onclick make NFT's go to item-details/nftId
+// 1. Use NftCard for HotCollections
+// 2. Make author dynamic by pulling authorId from URL, sending to API
+// 3. Use NftCard for Author
+// 4. Include skeleton loading state
+// 5. Make followers dynamic (Follow/Unfollow button) LOCALLY
+// 6. Onclick make NFT's go to item-details/nftId
 
 const Author = () => {
   // Destructure the apiId parameter from the URL
@@ -29,11 +29,9 @@ const Author = () => {
     setAuthorInfo(response.data);
     setFollowCount(response.data.followers);
     setLoading(false);
-    console.log(response.data);
   }
 
   function followBtn() {
-    console.log(followCount);
     setIsFollowing(!isFollowing);
     {
       !isFollowing
