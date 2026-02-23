@@ -3,7 +3,6 @@ import axios from "axios";
 import { useKeenSlider } from "keen-slider/react";
 import NftCard from "../UI/NftCard";
 
-
 const BASE_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
 
@@ -18,7 +17,6 @@ const NewItems = () => {
     const response = await axios.get(BASE_URL);
     setNewItems(response.data);
     setLoading(false);
-    console.log(response.data);
   }
 
   //KEEN SLIDER

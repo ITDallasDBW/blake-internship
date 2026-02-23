@@ -1,14 +1,10 @@
 import React, { useEffect } from "react";
 import EthImage from "../images/ethereum.svg";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import nftImage from "../images/nftImage.jpg";
 
 const ItemDetails = () => {
-  // const { id } = useParams();
-  // const location = useLocation();
-  // const item = location.state.item;
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -52,11 +48,7 @@ const ItemDetails = () => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to="/author">
-                            <img
-                              className="lazy"
-                              src={AuthorImage}
-                              alt=""
-                            />
+                            <img className="lazy" src={AuthorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
@@ -73,11 +65,7 @@ const ItemDetails = () => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to="/author">
-                            <img
-                              className="lazy"
-                              src={AuthorImage}
-                              alt=""
-                            />
+                            <img className="lazy" src={AuthorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
