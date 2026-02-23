@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
-import Skeleton from "../UI/Skeleton";
+import NftCard from "../UI/NftCard";
 
 const BASE_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
@@ -107,71 +106,19 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-
           <div className="navigation-wrapper">
             <div className="keen-slider" ref={sliderRef}>
-              {loading
+              {hotCo.length === 0
                 ? //Render skeleton slides while loading
                   [...Array(keenSize || 4)].map((_, id) => (
                     <div className="keen-slider__slide" key={id}>
-                      <div className="nft_coll">
-                        <div className="nft_wrap">
-                          <Link to={``}>
-                            <Skeleton width="100%" height="200px" />
-                          </Link>
-                        </div>
-                        <div className="nft_coll_pp">
-                          <Link to={``}>
-                            <Skeleton
-                              width="50px"
-                              height="50px"
-                              borderRadius="50%"
-                            />
-                          </Link>
-                          <i className="fa fa-check"></i>
-                        </div>
-                        <div className="nft_coll_info">
-                          <Link to="">
-                            <Skeleton width="100px" height="20px" />
-                          </Link>
-                          <br />
-                          <Skeleton width="60px" height="20px" />
-                        </div>
-                      </div>
+                      <NftCard data={null} />
                     </div>
                   ))
                 : //Render actual data when loaded
                   hotCo.map((hotColl, id) => (
                     <div className="keen-slider__slide" key={id}>
-                      <div className="nft_coll">
-                        <div className="nft_wrap">
-                          <Link
-                            to={`/item-details/${hotColl.nftId}`}
-                          >
-                            <img
-                              src={hotColl.nftImage}
-                              className="lazy img-fluid"
-                              alt=""
-                            />
-                          </Link>
-                        </div>
-                        <div className="nft_coll_pp">
-                          <Link to={`/author/${hotColl.authorId}`}>                      
-                            <img
-                              className="lazy pp-coll"
-                              src={hotColl.authorImage}
-                              alt=""
-                            />
-                          </Link>
-                          <i className="fa fa-check"></i>
-                        </div>
-                        <div className="nft_coll_info">
-                          <Link to="/explore">
-                            <h4>{hotColl.title}</h4>
-                          </Link>
-                          <span>ERC-{hotColl.code}</span>
-                        </div>
-                      </div>
+                      <NftCard data={hotColl} />
                     </div>
                   ))}
             </div>

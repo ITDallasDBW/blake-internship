@@ -3,7 +3,7 @@ import Skeleton from "./Skeleton";
 import { Link } from "react-router-dom";
 import CountDown from "../CountDown";
 
-const NftCard = ({ data }) => {
+const NftCard = ({ data, authorImage }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -51,9 +51,14 @@ const NftCard = ({ data }) => {
                 to={`../author/${data.authorId}`}
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
-                title="Creator: Monica Lucas"
+                title="Creator"
               >
-                <img src={data.authorImage} alt="" className="lazy" />
+                {/* Accommodate varying data from API */}
+                <img
+                  src={data.authorImage || authorImage}
+                  alt=""
+                  className="lazy"
+                />
                 <i className="fa fa-check"></i>
               </Link>
             </div>
