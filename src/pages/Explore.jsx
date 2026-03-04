@@ -7,6 +7,7 @@ const Explore = () => {
     window.scrollTo(0, 0);
     //Any comment
     //Plus this other one
+    //FROM MAIN!! DO NOT REMOVE
   }, []);
 
   return (
