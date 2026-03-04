@@ -38,3 +38,6 @@
   height: 100%;
   object-fit: cover;
 }
+.hideMe {
+  visibility: hidden;
+}
