@@ -14,7 +14,7 @@ const ExploreItems = () => {
   //Axios BASE API call
   async function getExploreItems() {
     const response = await axios.get(BASE_URL + suffix);
-    setExploreItems(response.data);
+    // setExploreItems(response.data);
   }
   //Function for Load More button
   function loadMore() {

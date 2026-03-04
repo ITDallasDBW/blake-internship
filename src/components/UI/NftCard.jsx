@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Skeleton from "./Skeleton";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CountDown from "../CountDown";
 
-const NftCard = ({ data, authorImage }) => {
+const NftCard = ({  data, authorImage }) => {
+  const {authId}=useParams();
+  // const { authId} = useParams();
+  // console.log(authId)
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,7 +21,7 @@ const NftCard = ({ data, authorImage }) => {
           <div className="nft__item">
             <div className="author_list_pp">
               <Link
-                to="../author"
+                to="/author"
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
                 className="image-wrapper"
@@ -33,7 +36,7 @@ const NftCard = ({ data, authorImage }) => {
               </Link>
             </div>
             <div className="nft__item_info">
-              <Link to="../item-details">
+              <Link to="/item-details">
                 <Skeleton width="180px" height="30px" />
               </Link>
               <Skeleton width="100px" height="20px" />
@@ -48,8 +51,10 @@ const NftCard = ({ data, authorImage }) => {
           {/* Populate from prop data */}
           <div className="nft__item">
             <div className="author_list_pp">
+              {/* {console.log("data..." +data.authorId)}
+              {console.log("params" +authId)} */}
               <Link
-                to={`../author/${data.authorId}`}
+                to={`../author/${authId}`}
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
                 title="Creator"

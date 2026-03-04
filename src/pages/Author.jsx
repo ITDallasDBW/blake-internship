@@ -8,7 +8,7 @@ import Skeleton from "../components/UI/Skeleton";
 const BASE_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=";
 
-// 1. Use NftCard for HotCollections
+// 1. XXXXXUse NftCard for HotCollections
 // 2. Make author dynamic by pulling authorId from URL, sending to API
 // 3. Use NftCard for Author
 // 4. Include skeleton loading state
@@ -17,7 +17,7 @@ const BASE_URL =
 
 const Author = () => {
   // Destructure the apiId parameter from the URL
-  const { id } = useParams();
+  const { authId } = useParams();
   const [authorInfo, setAuthorInfo] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isFollowing, setIsFollowing] = useState(false);
@@ -25,10 +25,13 @@ const Author = () => {
 
   //Axios API call
   async function getAuthorInfo() {
-    const response = await axios.get(BASE_URL + id);
+    const response = await axios.get(BASE_URL + authId);
     setAuthorInfo(response.data);
     setFollowCount(response.data.followers);
     setLoading(false);
+    
+    // console.log("API Response:", response.data);
+    // console.log(authId)
   }
 
   function followBtn() {
@@ -42,7 +45,7 @@ const Author = () => {
 
   useEffect(() => {
     getAuthorInfo();
-  }, []);
+  }, [authId]);
 
   return (
     <div id="wrapper">
