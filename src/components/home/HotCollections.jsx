@@ -1,16 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 import Skeleton from "../UI/Skeleton";
-
-//HotCollections Task List:
-//1. Fetch slides w/axios from
-// https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections
-//2. map array into HotCollections
-//3. Use owl, keen or react slick slider to carousel images
-//4. Push nftId to url on image click
 
 const BASE_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
@@ -20,14 +13,12 @@ const HotCollections = () => {
   const [hotCo, setHotCo] = useState([]);
   const [loading, setLoading] = useState(false);
   const [keenSize, setKeenSize] = useState(4);
-//   const navigate = useNavigate();
 
   //Axios API call
   async function getHotCo() {
     const response = await axios.get(BASE_URL);
     setHotCo(response.data);
     setLoading(false);
-    // console.log(response.data);
   }
 
   //KEEN SLIDER
@@ -147,7 +138,6 @@ const HotCollections = () => {
                           <Skeleton width="60px" height="20px" />
                         </div>
                       </div>
-
                     </div>
                   ))
                 : //Render actual data when loaded
@@ -208,7 +198,7 @@ const HotCollections = () => {
               </>
             )}
           </div>
-                </div>
+        </div>
       </div>
     </section>
   );

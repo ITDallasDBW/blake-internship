@@ -109,8 +109,7 @@ const NewItems = () => {
           <div className="navigation-wrapper">
             <div className="keen-slider" ref={sliderRef}>
               {newItems.length === 0
-                ? 
-                  //Render skeleton slides while loading
+                ? //Render skeleton slides while loading
                   [...Array(keenSize || 4)].map((_, id) => (
                     <div className="keen-slider__slide" key={id}>
                       <NftCard data={null} />

@@ -5,12 +5,6 @@ import Skeleton from "../components/UI/Skeleton";
 import axios from "axios";
 import { normalize } from "../utils/normalize";
 
-// Item Details Tasks
-//Dynamic details per API at /item-details/{nftId}
-//Incl Skeleton state
-//2ndary-replace skeleton images w/image-wrapper divs
-//Gotta clean data for NftCard to present bc ItemDetails API returns different ownerId and CreatorId for routing to /author/*
-//ChatGPT says to create nNormalizer fn
 
 const BASE_URL =
   "https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=";
@@ -19,16 +13,13 @@ const ItemDetails = () => {
   const { id } = useParams();
   //USE STATE
   const [details, setDetails] = useState([]);
-  const [authorInfo, setAuthorInfo]=useState([])
   const [loading, setLoading] = useState(true);
 
   async function getDetails() {
     const response = await axios.get(BASE_URL + id);
     const normalData=normalize(response.data);
     setDetails(normalData);
-    // setDetails(response)
     setLoading(false);
-    // console.log(normalize(response.data))
   }
   useEffect(() => {
     window.scrollTo(0, 0);

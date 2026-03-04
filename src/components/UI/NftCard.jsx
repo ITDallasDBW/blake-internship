@@ -3,10 +3,8 @@ import Skeleton from "./Skeleton";
 import { Link, useParams } from "react-router-dom";
 import CountDown from "../CountDown";
 
-const NftCard = ({  data, authorImage }) => {
-  const {authId}=useParams();
-  // const { authId} = useParams();
-  // console.log(authId)
+const NftCard = ({ data, authorImage }) => {
+  const { authId } = useParams();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -51,8 +49,6 @@ const NftCard = ({  data, authorImage }) => {
           {/* Populate from prop data */}
           <div className="nft__item">
             <div className="author_list_pp">
-              {/* {console.log("data..." +data.authorId)}
-              {console.log("params" +authId)} */}
               <Link
                 to={`../author/${authId}`}
                 data-bs-toggle="tooltip"
