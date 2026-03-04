@@ -1,7 +1,9 @@
 import React from "react";
 import NftCard from "../UI/NftCard";
+import { useParams } from "react-router-dom";
 
 const AuthorItems = ({ data, authorImage }) => {
+  const { authId } = useParams();
   return (
     <div className="de_tab_content">
       <div className="tab-1">

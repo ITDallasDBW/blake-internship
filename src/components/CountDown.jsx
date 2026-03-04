@@ -30,13 +30,11 @@ const CountDown = ({ expiryDate }) => {
     const secondsLeft = millisLeft / 1000;
     const minutesLeft = secondsLeft / 60;
     const hoursLeft = minutesLeft / 60;
-    const secondsShow=Math.floor(secondsLeft % 60);
-    const minutesShow=Math.floor(minutesLeft % 60);
-    const hoursShow=Math.floor(hoursLeft)
+    const secondsShow = Math.floor(secondsLeft % 60);
+    const minutesShow = Math.floor(minutesLeft % 60);
+    const hoursShow = Math.floor(hoursLeft);
 
-    setTimeToShow(
-      `${hoursShow}h ${minutesShow}m ${secondsShow}s`,
-    );
+    setTimeToShow(`${hoursShow}h ${minutesShow}m ${secondsShow}s`);
   }
   return <div className="de_countdown">{timeToShow}</div>;
 };
