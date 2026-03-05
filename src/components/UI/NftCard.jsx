@@ -49,8 +49,9 @@ const NftCard = ({ data, authorImage }) => {
           {/* Populate from prop data */}
           <div className="nft__item">
             <div className="author_list_pp">
+              {/* Accommodate data from prop or useParams */}
               <Link
-                to={`../author/${authId}`}
+                to={`../author/${data.authorId || authId}`}
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
                 title="Creator"

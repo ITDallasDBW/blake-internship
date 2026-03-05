@@ -133,10 +133,10 @@ const Author = () => {
                       ) : (
                         <>
                           <div className="profile_follower">
-                            {authorInfo.followers} followers
+                            {followCount} followers
                           </div>
-                          <Link to="#" className="btn-main">
-                            Follow
+                          <Link to="#" className="btn-main" onClick={followBtn}>
+                            {isFollowing ? "Unfollow" : "Follow"}
                           </Link>
                         </>
                       )}
