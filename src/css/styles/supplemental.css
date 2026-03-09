@@ -41,3 +41,7 @@
 .hideMe {
   visibility: hidden;
 }
+.nft__item img {
+    object-fit: contain;
+
+}

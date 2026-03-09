@@ -15,6 +15,7 @@ const Author = () => {
   const [loading, setLoading] = useState(true);
   const [isFollowing, setIsFollowing] = useState(false);
   const [followCount, setFollowCount] = useState();
+  const [isCopied, setIsCopied]=useState(false);
 
   //Axios API call
   async function getAuthorInfo() {
@@ -24,6 +25,18 @@ const Author = () => {
     setLoading(false);
   }
 
+  //Button to copy
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(authorInfo.address);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000); // Reset state after 2 seconds
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  };
+
+  //Button to follow 
   function followBtn() {
     setIsFollowing(!isFollowing);
     {
@@ -104,8 +117,9 @@ const Author = () => {
                               <span id="wallet" className="profile_wallet">
                                 {authorInfo.address}
                               </span>
-                              <button id="btn_copy" title="Copy Text">
-                                Copy
+                              <button id="btn_copy" title="Copy Text"
+                              onClick={handleCopy}>
+                                {isCopied ? "COPIED" : "Copy"}
                               </button>
                             </h4>
                           </>
@@ -133,10 +147,10 @@ const Author = () => {
                       ) : (
                         <>
                           <div className="profile_follower">
-                            {authorInfo.followers} followers
+                            {followCount} followers
                           </div>
-                          <Link to="#" className="btn-main">
-                            Follow
+                          <Link to="#" className="btn-main" onClick={followBtn}>
+                          {isFollowing? "Unfollow" : "Follow"}
                           </Link>
                         </>
                       )}
